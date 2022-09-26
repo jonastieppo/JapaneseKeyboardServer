@@ -144,3 +144,4 @@ export class JoiValidationPipe<KanaType> implements PipeTransform {
 + Passar como argumento ao construtor da classe o schema a ver validade
 + Ligar o pipe ao método utilizando @UsePipes
 
+# Adicionar filtro de excessão global

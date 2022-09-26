@@ -19,7 +19,7 @@ export abstract class KanaControllerTemplate<KanaType>{
     }
 
     @Put(':id')
-    @UsePipes(new SchemaValidationPie())
+    // @UsePipes(new SchemaValidationPie()) //estudar como implementar melhor depois
     async Update(@Param() id: number, @Body() kana: QueryDeepPartialEntity<KanaType>): Promise<UpdateResult> {
       return await this.kanaService.update(id, kana)
    
@@ -35,6 +35,6 @@ export abstract class KanaControllerTemplate<KanaType>{
       return await this.kanaService.delete(id);
    
     }
-
+a
 
 }
