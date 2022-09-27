@@ -6,6 +6,7 @@ import { HiraganaModule } from './hiragana/hiragana.module';
 import { KatakanaModule } from './katakana/katakana.module';
 import { Hiragana } from './hiragana/hiragana.entity';
 import { Katakana } from './katakana/katakana.entity';
+import { JmdictsearchModule } from './jmdictsearch/jmdictsearch.module';
 @Module({
   imports: [ TypeOrmModule.forRoot({
     type:  'postgres',
@@ -16,7 +17,7 @@ import { Katakana } from './katakana/katakana.entity';
     database: 'JapaneseKeyBoardServer',
     entities: [Hiragana, Katakana],
     synchronize: true,
-  }), HiraganaModule, KatakanaModule],
+  }), HiraganaModule, KatakanaModule, JmdictsearchModule],
   controllers: [AppController],
   providers: [AppService],
 })
