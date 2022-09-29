@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {readingBeginning, setup as setupJmdict, SetupType, Word} from 'jmdict-simplified-node'
+import {kanjiAnywhere, readingAnywhere, readingBeginning, setup, setup as setupJmdict, SetupType, Word} from 'jmdict-simplified-node'
 
 @Injectable()
 export class JmdictsearchService {
@@ -9,9 +9,19 @@ export class JmdictsearchService {
         this.initDB()
     }
     async initDB(){
-        this.jmdictPromise = await setupJmdict('my-jmdict-simplified-db', 'jmdict-eng-3.1.0.json');
+        this.jmdictPromise = await setup('my-jmdict-simplified-db');
     }
-    async findNi(): Promise<Word[]> {
-        return await readingBeginning(this.jmdictPromise.db,'日')
+    async ReadBeginning(): Promise<string[]> {
+        return await (this.ReturnKanjiText(await this.FilterWordWithKanji(await kanjiAnywhere(this.jmdictPromise.db,'日'))))
     }
+
+    async FilterWordWithKanji(WordArray : Word []) : Promise<Word[]> {
+        return WordArray.filter(value => value.kanji.filter(kanji=>kanji.common).length !=0)
+    }
+
+    async ReturnKanjiText(word : Word[]) : Promise<string[]> {
+        return await word.map(value=>value.kanji.map(v=>v.text)).flat()
+    }
+
+
 }

@@ -8,7 +8,7 @@ export class JmdictsearchController {
     constructor(private jmdictSearcher : JmdictsearchService){}
 
     @Get('find')
-    async findNi(): Promise<Word[]> {
-      return await this.jmdictSearcher.findNi()
+    async findNi(): Promise<string[]> {
+      return await this.jmdictSearcher.ReadBeginning()
     }
 }
