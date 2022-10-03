@@ -2,6 +2,7 @@ import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import "reflect-metadata"
 import { AllExceptionsFilter } from './app.exeception';
+import {setup as setupJmdict} from 'jmdict-simplified-node'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
