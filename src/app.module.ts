@@ -18,7 +18,7 @@ import { JmdictsearchModule } from './jmdictsearch/jmdictsearch.module';
     entities: [Hiragana, Katakana],
     synchronize: true,
   }), HiraganaModule, KatakanaModule, JmdictsearchModule],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

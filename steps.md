@@ -145,3 +145,28 @@ export class JoiValidationPipe<KanaType> implements PipeTransform {
 + Ligar o pipe ao método utilizando @UsePipes
 
 # Adicionar filtro de excessão global
+
+# Adicionar o JMDict
+
+# Adicionar um interceptador para transformar o output do JMDict
+
+## Aplicar o map do rxjs para filtar as Words[] só com kanji e strings com 1 elemento
+
+```ts
+import { Injectable, NestInterceptor, ExecutionContext, CallHandler } from '@nestjs/common';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+export interface Response<T> {
+  data: T;
+}
+
+@Injectable()
+export class TransformInterceptor<T> implements NestInterceptor<T, Response<T>> {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<Response<T>> {
+    return next.handle().pipe(map(data => ({ data })));
+  }
+}
+```
+
+# Aplicamos o decorador no nível de método
